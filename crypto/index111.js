@@ -54,7 +54,7 @@ async function connect() {
     const claimingddress =  keccak256(await signer.getAddress())
         if(await merkleTreeWl.getHexProof(claimingddress).length>0){
             const proof = await  merkleTreeAllowlist.getHexProof(claimingddress)
-            const transactionResponse = await contract.mintAllowlist(proof)}
+            const transactionResponse = await contract.mintWl(proof)}
     else{
         mintWlButton.innerHTML = "You are not eligble"
     }     
