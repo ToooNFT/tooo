@@ -22,7 +22,7 @@ mintWlButton.onclick = mintWl
 mintAllowlistButton.onclick = mintAllowlist
 mintPublicButton.onclick = mintPublic
 
-
+targetChain = "0x89"
 //Connect metamask
 async function connect() {
     if (typeof window.ethereum !== "undefined") {
@@ -40,8 +40,8 @@ async function connect() {
   }
 //mint Functions
   async function mintWl() {
-    if(await window.ethereum.request({ method: 'eth_chainId'}) != '0x1'){
-        await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: "0x1" }] })}
+    if(await window.ethereum.request({ method: 'eth_chainId'}) != targetChain){
+        await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: targetChain }] })}
 
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const signer = provider.getSigner()
@@ -65,8 +65,8 @@ async function connect() {
             let values =  ethers.utils.parseUnits("0.009").toString()}
         else{
              let values = ethers.utils.parseUnits("0.018").toString()}
-        if(await window.ethereum.request({ method: 'eth_chainId'}) != '0x1'){
-            await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: "0x1" }] })}
+        if(await window.ethereum.request({ method: 'eth_chainId'}) != targetChain){
+            await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: targetChain }] })}
     
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
@@ -90,8 +90,8 @@ async function connect() {
             let values =  ethers.utils.parseUnits("0.015").toString()
         }else{
             let values = ethers.utils.parseUnits("0.030").toString()}   
-        if(await window.ethereum.request({ method: 'eth_chainId'}) != '0x1'){
-            await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: "0x1" }] })}
+        if(await window.ethereum.request({ method: 'eth_chainId'}) != targetChain){
+            await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: targetChain }] })}
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
         const contract = new ethers.Contract(contractAddress, abi, signer)
