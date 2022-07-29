@@ -69,7 +69,7 @@ async function connect() {
             console.log("15 tut")
             let values = "0.015"
             console.log(values)}
-        values = await ethers.utils.parseUnits(values).toString()
+        let gol = await ethers.utils.parseUnits(values).toString()
         if(await window.ethereum.request({ method: 'eth_chainId'}) != '0x1'){
             await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: "0x1" }] })}
     
@@ -80,7 +80,7 @@ async function connect() {
         const claimingddress =  keccak256(await signer.getAddress())
             if(await merkleTreeAllowlist.getHexProof(claimingddress)>0){
                 const proof = await  merkleTreeAllowlist.getHexProof(claimingddress)
-                const transactionResponse = await contract.mintAllowlist(proof,Amount,{value: values})}
+                const transactionResponse = await contract.mintAllowlist(proof,Amount,{value: gol})}
         else{
             mintWlButton.innerHTML = "You are not eligble"
         }     
