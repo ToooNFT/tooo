@@ -61,7 +61,8 @@ async function connect() {
      
     async function mintAllowlist() {
         const Amount = document.getElementById("mintAmountAllowlist").value
-        console.log(Amount)
+        if(Amount==1){
+            console.log("1")}
         values = ethers.utils.parseUnits(values).toString()
         if(await window.ethereum.request({ method: 'eth_chainId'}) != '0x1'){
             await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: "0x1" }] })}
@@ -84,7 +85,7 @@ async function connect() {
 
     async function mintPublic() {
         const Amount = document.getElementById("mintAmountPublic").value
-        if(Amount == "1"){
+        if(Amount == 1){
             let values = "0.015"
         }else{
             let values = "0.030"
