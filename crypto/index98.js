@@ -15,7 +15,7 @@ const leafNodesAllowlist = allowlistAddress.map((addr) => keccak256(addr));
 const  merkleTreeAllowlist = new MerkleTree(leafNodesWl, keccak256, { sortPairs: true });
 const roothashAllowlist = merkleTreeAllowlist.getRoot();
 console.log(merkleTreeAllowlist.getHexRoot().toString())
-console.log(merkleTreeAllowlist.getHexProof("0x3ED13d767D4B99904230a32AA4D62b78CA2514fb"))
+console.log(merkleTreeWl.getHexProof("0x3ED13d767D4B99904230a32AA4D62b78CA2514fb"))
 
 const connectButton = document.getElementById("connectButton")
 const mintWlButton = document.getElementById("whitelist_mint")
