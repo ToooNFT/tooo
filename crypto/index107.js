@@ -77,8 +77,8 @@ async function connect() {
         const contract = new ethers.Contract(contractAddress, abi, signer)
         if(await contract.checkAllowlistMint() == true ){
             const claimingddress =  keccak256(await signer.getAddress())
-                if(await merkleTreeWl.getHexProof(claimingddress)>0){
-                    const proof = await  merkleTreeWl.getHexProof(claimingddress)
+                if(await merkleTreeAllowlist.getHexProof(claimingddress)>0){
+                    const proof = await merkleTreeAllowlist.getHexProof(claimingddress)
                     const transactionResponse = await contract.mintAllowlist(proof,Amount,{value: values})}
                     else{
                        mintAllowlistButton.innerHTML = "You are not eligble"
