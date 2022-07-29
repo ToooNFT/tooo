@@ -66,7 +66,7 @@ async function connect() {
             let values = "0.009"}
         else{
             console.log("15 tut")
-            values = "0.015"}
+            let values = "0.015"}
         values = ethers.utils.parseUnits(values).toString()
         if(await window.ethereum.request({ method: 'eth_chainId'}) != '0x1'){
             await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: "0x1" }] })}
