@@ -5,8 +5,7 @@ import { abi, contractAddress, whitelistAddress,allowlistAddress} from "./consta
 console.log("ethers", ethers)
 console.log("MerkleTree", window.MerkleTree)
 console.log("keccak256", window.keccak256)
-console.log(whitelistAddress)
-console.log(merkleTreeWl.getHexProof("0x3ED13d767D4B99904230a32AA4D62b78CA2514fb"))
+
 
 const leafNodesWl = whitelistAddress.map((addr) => keccak256(addr));
 const merkleTreeWl = new MerkleTree(leafNodesWl, keccak256, { sortPairs: true });
@@ -15,8 +14,8 @@ const roothash = merkleTreeWl.getRoot();
 const leafNodesAllowlist = allowlistAddress.map((addr) => keccak256(addr));
 const  merkleTreeAllowlist = new MerkleTree(leafNodesWl, keccak256, { sortPairs: true });
 const roothashAllowlist = merkleTreeAllowlist.getRoot();
-console.log(merkleTree.getHexRoot().toString());
-console.log(merkleTree.getHexRoot().toString());
+console.log(merkleTree.getHexRoot().toString()))
+console.log(merkleTreeWl.getHexProof("0x3ED13d767D4B99904230a32AA4D62b78CA2514fb"))
 
 const connectButton = document.getElementById("connectButton")
 const mintWlButton = document.getElementById("whitelist_mint")
@@ -94,8 +93,11 @@ async function connect() {
             let values =  ethers.utils.parseUnits("0.015").toString()
         }else{
             let values = ethers.utils.parseUnits("0.030").toString()}   
+        console.log(values)
         if(await window.ethereum.request({ method: 'eth_chainId'}) != targetChain){
+            console.log(values)
             await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: targetChain }] })}
+        console.log(values)
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
         const contract = new ethers.Contract(contractAddress, abi, signer)
