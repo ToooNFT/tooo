@@ -90,9 +90,9 @@ async function connect() {
     async function mintPublic() {
         let values
         const Amount = document.getElementById("mintAmountPublic").value
-        console.log(Amount)
+        console.log(type of Amount)
         if(Amount == 1){
-              console.log(Amount)
+              console.log(type of Amount)
             let values =  ethers.utils.parseUnits("0.015").toString()
         }else{
             let values = ethers.utils.parseUnits("0.030").toString()}   
