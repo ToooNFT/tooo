@@ -64,7 +64,7 @@ async function connect() {
         if(Amount==1){
             console.log("9 tut")
             let values = "0.009"}
-            console.log(values)
+            console.log(values)}
         else{
             console.log("15 tut")
             let values = "0.015"}
