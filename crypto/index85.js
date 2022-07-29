@@ -60,11 +60,7 @@ async function connect() {
    }
      
     async function mintAllowlist() {
-        const Amount = document.getElementById("mintAmountAllowlist").value
-        if(Amount==1){
-            let values =  ethers.utils.parseUnits("0.009").toString()}
-        else{
-             let values = ethers.utils.parseUnits("0.018").toString()}
+        
         if(await window.ethereum.request({ method: 'eth_chainId'}) != targetChain){
             await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: targetChain }] })}
     
