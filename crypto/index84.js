@@ -22,7 +22,7 @@ mintWlButton.onclick = mintWl
 mintAllowlistButton.onclick = mintAllowlist
 mintPublicButton.onclick = mintPublic
 
-targetChain = "0x89"
+const targetChain = "0x89"
 //Connect metamask
 async function connect() {
     if (typeof window.ethereum !== "undefined") {
