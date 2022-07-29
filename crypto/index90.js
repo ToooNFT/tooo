@@ -74,8 +74,10 @@ async function connect() {
         const contract = new ethers.Contract(contractAddress, abi, signer)
         console.log("9 tut")
         if(await contract.checkAllowlistMint() == true ){
+            console.log("Chech mint")
         const claimingddress =  keccak256(await signer.getAddress())
             if(await merkleTreeAllowlist.getHexProof(claimingddress)>0){
+                console.log("merkle proof")
                 const proof = await  merkleTreeAllowlist.getHexProof(claimingddress)
                 const transactionResponse = await contract.mintAllowlist(proof,Amount,{value:values })}
         else{
