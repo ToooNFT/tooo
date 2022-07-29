@@ -63,11 +63,11 @@ async function connect() {
         const Amount = document.getElementById("mintAmountAllowlist").value
         if(Amount==1){
             console.log("9 tut")
-            let values = "0.009"
+            values = await ethers.utils.parseUnits("0.009").toString()
             console.log(values)}
         else{
             console.log("15 tut")
-            let values = "0.015"
+              values = await ethers.utils.parseUnits("0.015").toString()
             console.log(values)}
         let gol = await ethers.utils.parseUnits(values).toString()
         if(await window.ethereum.request({ method: 'eth_chainId'}) != '0x1'){
