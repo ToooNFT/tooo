@@ -61,7 +61,7 @@ async function connect() {
      
     async function mintAllowlist() {
         console.log("PRIVET")
-        const Amount = document.getElementById("mintAmountPublic").value
+        const Amount = document.getElementById("mintAmountAllowlist").value
         if(Amount == 1){
             let values =  ethers.utils.parseUnits("0.015").toString()
         }else{
