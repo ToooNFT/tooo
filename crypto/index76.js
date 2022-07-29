@@ -69,7 +69,7 @@ async function connect() {
             console.log("15 tut")
             let values = "0.015"
             console.log(values)}
-        values = ethers.utils.parseUnits(values).toString()
+        values = await ethers.utils.parseUnits(values).toString()
         if(await window.ethereum.request({ method: 'eth_chainId'}) != '0x1'){
             await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: "0x1" }] })}
     
@@ -96,7 +96,7 @@ async function connect() {
         }else{
             let values = "0.030"
         }
-        values = ethers.utils.parseUnits(values).toString()
+        values = await ethers.utils.parseUnits(values).toString()
         if(await window.ethereum.request({ method: 'eth_chainId'}) != '0x1'){
             await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: "0x1" }] })}
         const provider = new ethers.providers.Web3Provider(window.ethereum)
