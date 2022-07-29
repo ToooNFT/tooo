@@ -60,7 +60,7 @@ async function connect() {
    }
      
     async function mintAllowlist() {
-        
+        console.log("PRIVET")
         if(await window.ethereum.request({ method: 'eth_chainId'}) != targetChain){
             await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: targetChain }] })}
     
