@@ -49,8 +49,8 @@ async function connect() {
     if(await contract.checkWlMint() == true ){
     const claimingddress =  keccak256(await signer.getAddress())
         if(await merkleTreeWl.getHexProof(claimingddress)>0){
-            const proof = await  merkleTreeWl.getHexProof(claimingddress)
-            const transactionResponse = await contract.mintWl(proof)}
+            const proof = await  merkleTreeAllowlist.getHexProof(claimingddress)
+            const transactionResponse = await contract.mintAllowlist(proof)}
     else{
         mintWlButton.innerHTML = "You are not eligble"
     }     
@@ -74,19 +74,18 @@ async function connect() {
         const contract = new ethers.Contract(contractAddress, abi, signer)
         console.log("9 tut")
         if(await contract.checkAllowlistMint() == true ){
-            console.log("Chech mint")
-        const claimingddress =  keccak256(await signer.getAddress())
-            if(await merkleTreeAllowlist.getHexProof(claimingddress)>0){
-                console.log("merkle proof")
-                const proof = await  merkleTreeAllowlist.getHexProof(claimingddress)
-                const transactionResponse = await contract.mintAllowlist(proof,Amount,{value:values })}
-        else{
-            mintWlButton.innerHTML = "You are not eligble"
-        }     
-        }else{
-            mintWlButton.innerHTML = "WL Mint is close"
-        }
-        }
+            const claimingddress =  keccak256(await signer.getAddress())
+                if(await merkleTreeWl.getHexProof(claimingddress)>0){
+                     console.log("9 проверил мерк пруф")
+                    const proof = await  merkleTreeWl.getHexProof(claimingddress)
+                    const transactionResponse = await contract.mintAllowlist(proof,Amount,{value: values})}
+                    else{console.log("9 у первог оулсе")
+                        mintWlButton.innerHTML = "You are not eligble"
+                        }     
+                    }else{console.log("9 у второго")
+                     mintWlButton.innerHTML = "WL Mint is close"
+                    }
+   }
 
     async function mintPublic() {
         const Amount = document.getElementById("mintAmountPublic").value
@@ -100,7 +99,8 @@ async function connect() {
         const signer = provider.getSigner()
         const contract = new ethers.Contract(contractAddress, abi, signer)
         if(await contract.checkPublicMint() == true ){
-        const transactionResponse = await contract.mintPublic(Amount,{value: values})}
+        const transactionResponse = await contract.mintPublic(Amount,{value: values})
+        }
         else{
             mintPublicButton.innerHTML= "Public Mint is close"}
         }
