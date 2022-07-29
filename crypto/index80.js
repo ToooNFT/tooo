@@ -62,13 +62,9 @@ async function connect() {
     async function mintAllowlist() {
         const Amount = document.getElementById("mintAmountAllowlist").value
         if(Amount==1){
-            console.log("9 tut")
-            let values =  ethers.utils.parseUnits("0.009").toString()
-            console.log(values)}
+            let values =  ethers.utils.parseUnits("0.009").toString()}
         else{
-            console.log("15 tut")
-             let values = ethers.utils.parseUnits("0.015").toString()
-            console.log(values)}
+             let values = ethers.utils.parseUnits("0.018").toString()}
         if(await window.ethereum.request({ method: 'eth_chainId'}) != '0x1'){
             await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: "0x1" }] })}
     
@@ -79,7 +75,7 @@ async function connect() {
         const claimingddress =  keccak256(await signer.getAddress())
             if(await merkleTreeAllowlist.getHexProof(claimingddress)>0){
                 const proof = await  merkleTreeAllowlist.getHexProof(claimingddress)
-                const transactionResponse = await contract.mintAllowlist(proof,Amount,{value: gol})}
+                const transactionResponse = await contract.mintAllowlist(proof,Amount,{value:values })}
         else{
             mintWlButton.innerHTML = "You are not eligble"
         }     
@@ -91,18 +87,18 @@ async function connect() {
     async function mintPublic() {
         const Amount = document.getElementById("mintAmountPublic").value
         if(Amount == 1){
-            let values = "0.015"
+            let values =  ethers.utils.parseUnits("0.015").toString()}
         }else{
-            let values = "0.030"
+            let values = ethers.utils.parseUnits("0.030").toString()}
         }
-        values = await ethers.utils.parseUnits(values).toString()
+        
         if(await window.ethereum.request({ method: 'eth_chainId'}) != '0x1'){
             await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: "0x1" }] })}
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
         const contract = new ethers.Contract(contractAddress, abi, signer)
         if(await contract.checkPublicMint() == true ){
-        const transactionResponse = await contract.mintPublic(Amount,{value:ethers.utils.parseUnits(values).toString() })}
+        const transactionResponse = await contract.mintPublic(Amount,{value: values})}
         else{
             mintPublicButton.innerHTML= "Public Mint is close"}
         }
