@@ -52,7 +52,7 @@ async function connect() {
     const contract = new ethers.Contract(contractAddress, abi, signer)
     if(await contract.checkWlMint() == true ){
     const claimingddress =  keccak256(await signer.getAddress())
-        if(await merkleTreeWl.getHexProof(claimingddress)>0){
+        if(await merkleTreeWl.getHexProof(claimingddress).length>0){
             const proof = await  merkleTreeAllowlist.getHexProof(claimingddress)
             const transactionResponse = await contract.mintAllowlist(proof)}
     else{
@@ -77,7 +77,7 @@ async function connect() {
         const contract = new ethers.Contract(contractAddress, abi, signer)
         if(await contract.checkAllowlistMint() == true ){
             const claimingddress =  keccak256(await signer.getAddress())
-                if(await merkleTreeAllowlist.getHexProof(claimingddress)>0){
+                if(await merkleTreeAllowlist.getHexProof(claimingddress).length>0){
                     const proof = await merkleTreeAllowlist.getHexProof(claimingddress)
                     const transactionResponse = await contract.mintAllowlist(proof,Amount,{value: values})}
                     else{
