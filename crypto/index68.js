@@ -61,7 +61,7 @@ async function connect() {
      
     async function mintAllowlist() {
         const Amount = document.getElementById("mintAmountAllowlist").value
-        if(Amount = 1){
+        if(Amount == "1"){
             const values = "0.009"
         }else{
             const values = "0.018"
@@ -88,7 +88,7 @@ async function connect() {
 
     async function mintPublic() {
         const Amount = document.getElementById("mintAmountPublic").value
-        if(Amount = 1){
+        if(Amount == "1"){
             let values = "0.015"
         }else{
             let values = "0.030"
