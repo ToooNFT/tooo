@@ -88,7 +88,7 @@ async function connect() {
    }
 
     async function mintPublic() {
-        const Amount = document.getElementById("mintAmountPublic").value
+        let Amount = document.getElementById("mintAmountPublic").value
         console.log(Amount)
         if(Amount = 1){
               console.log(Amount)
