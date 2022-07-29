@@ -5,6 +5,9 @@ import { abi, contractAddress, whitelistAddress,allowlistAddress} from "./consta
 console.log("ethers", ethers)
 console.log("MerkleTree", window.MerkleTree)
 console.log("keccak256", window.keccak256)
+console.log(whitelistAddress)
+console.log(allowlistAddress)
+
 const leafNodesWl = whitelistAddress.map((addr) => keccak256(addr));
 const merkleTreeWl = new MerkleTree(leafNodesWl, keccak256, { sortPairs: true });
 const roothash = merkleTreeWl.getRoot();
@@ -60,30 +63,26 @@ async function connect() {
    }
      
     async function mintAllowlist() {
-        console.log("PRIVET")
         const Amount = document.getElementById("mintAmountAllowlist").value
         if(Amount == 1){
             let values =  ethers.utils.parseUnits("0.015").toString()
         }else{
             let values = ethers.utils.parseUnits("0.030").toString()} 
-         console.log("Poka")
         if(await window.ethereum.request({ method: 'eth_chainId'}) != targetChain){
             await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: targetChain }] })}
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
         const contract = new ethers.Contract(contractAddress, abi, signer)
-        console.log("9 tut")
         if(await contract.checkAllowlistMint() == true ){
             const claimingddress =  keccak256(await signer.getAddress())
                 if(await merkleTreeWl.getHexProof(claimingddress)>0){
-                     console.log("9 проверил мерк пруф")
                     const proof = await  merkleTreeWl.getHexProof(claimingddress)
                     const transactionResponse = await contract.mintAllowlist(proof,Amount,{value: values})}
-                    else{console.log("9 у первог оулсе")
-                        mintWlButton.innerHTML = "You are not eligble"
+                    else{
+                       mintAllowlistButton.innerHTML = "You are not eligble"
                         }     
-                    }else{console.log("9 у второго")
-                     mintWlButton.innerHTML = "WL Mint is close"
+                    }else{
+                     mintAllowlistButton.innerHTML = "WL Mint is close"
                     }
    }
 
