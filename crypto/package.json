@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "-": "^0.0.1",
+    "http": "^0.0.1-security",
+    "prettier": "^2.7.1",
+    "server": "^1.0.37"
+  }
+}
