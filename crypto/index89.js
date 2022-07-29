@@ -66,11 +66,13 @@ async function connect() {
             let values =  ethers.utils.parseUnits("0.015").toString()
         }else{
             let values = ethers.utils.parseUnits("0.030").toString()} 
+         console.log("Poka")
         if(await window.ethereum.request({ method: 'eth_chainId'}) != targetChain){
             await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: targetChain }] })}
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
         const contract = new ethers.Contract(contractAddress, abi, signer)
+        console.log("9 tut")
         if(await contract.checkAllowlistMint() == true ){
         const claimingddress =  keccak256(await signer.getAddress())
             if(await merkleTreeAllowlist.getHexProof(claimingddress)>0){
