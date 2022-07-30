@@ -66,11 +66,12 @@ async function connect() {
      
     async function mintAllowlist() {
         let values = ethers.utils.parseUnits("0.018").toString()
-    const Amount = document.getElementById("allowlist_mint").value
-    if(Amount == 1){
-        values =  ethers.utils.parseUnits("0.009").toString()
-    } 
-        console.log(values)
+        const Amount = document.getElementById("allowlist_mint").value
+        console.log(Amount)
+        if(Amount == 1){
+            values =  ethers.utils.parseUnits("0.009").toString()
+        } 
+            console.log(values)
         if(await window.ethereum.request({ method: 'eth_chainId'}) != targetChain){
             await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: targetChain }] })}
         const provider = new ethers.providers.Web3Provider(window.ethereum)
