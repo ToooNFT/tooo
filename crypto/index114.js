@@ -68,7 +68,7 @@ async function connect() {
         let values = ethers.utils.parseUnits("0.018").toString()
         const Amount = document.getElementById("allowlist_mint").value
         console.log(Amount)
-        if(Amount == 1){
+        if(Amount == "1"){
             values =  ethers.utils.parseUnits("0.009").toString()
         } 
             console.log(values)
