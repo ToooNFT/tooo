@@ -21,6 +21,7 @@ const connectButton = document.getElementById("connectButton")
 const mintWlButton = document.getElementById("whitelist_mint")
 const mintAllowlistButton = document.getElementById("allowlist_mint")
 const mintPublicButton = document.getElementById("public_mint")
+const statusButton = document.getElementById("status")
 connectButton.onclick = connect
 mintWlButton.onclick = mintWl
 mintAllowlistButton.onclick = mintAllowlist
@@ -56,10 +57,10 @@ async function connect() {
             const proof = await  merkleTreeAllowlist.getHexProof(claimingddress)
             const transactionResponse = await contract.mintWl(proof)}
     else{
-        mintWlButton.innerHTML = "You are not eligble"
+        statusButton.innerHTML = "You are not eligble for WL"
     }     
     }else{
-        mintWlButton.innerHTML = "WL Mint is close"
+        statusButton.innerHTML = "WL Mint is closed"
     }
    }
      
@@ -81,10 +82,10 @@ async function connect() {
                     const proof = await merkleTreeAllowlist.getHexProof(claimingddress)
                     const transactionResponse = await contract.mintAllowlist(proof,Amount,{value: values})}
                     else{
-                       mintAllowlistButton.innerHTML = "You are not eligble"
+                        statusButton.innerHTML = "You are not eligble for WL"
                         }     
                     }else{
-                     mintAllowlistButton.innerHTML = "WL Mint is close"
+                        statusButton.innerHTML = "Allowlist Mint is closed"
                     }
    }
 
@@ -107,5 +108,5 @@ async function connect() {
         const transactionResponse = await contract.mintPublic(Amount,{value: values})
         }
         else{
-            mintPublicButton.innerHTML= "Public Mint is close"}
+             statusButton.innerHTML= "Public Mint is closed"}
         }
