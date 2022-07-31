@@ -12,7 +12,7 @@ const merkleTreeWl = new MerkleTree(leafNodesWl, keccak256, { sortPairs: true })
 const roothash = merkleTreeWl.getRoot();
 
 const leafNodesAllowlist = allowlistAddress.map((addr) => keccak256(addr));
-const  merkleTreeAllowlist = new MerkleTree(leafNodesWl, keccak256, { sortPairs: true });
+const  merkleTreeAllowlist = new MerkleTree(allowlistAddress, keccak256, { sortPairs: true });
 const roothashAllowlist = merkleTreeAllowlist.getRoot();
 console.log(merkleTreeWl.getHexRoot().toString())
 console.log(merkleTreeWl.getHexProof(keccak256("0x3ED13d767D4B99904230a32AA4D62b78CA2514fb")))
