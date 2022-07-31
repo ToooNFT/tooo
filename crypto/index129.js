@@ -91,14 +91,14 @@ async function connect() {
 
     async function mintPublic() {
         if(await window.ethereum.request({ method: 'eth_chainId'}) != targetChain){
-            console.log(values)
+            
             await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: targetChain }] })}
-        console.log(values)
+
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
         const contract = new ethers.Contract(contractAddress, abi, signer)
         if(await contract.checkPublicMint() == true ){
-            console.log(values)
+       
         const transactionResponse = await contract.mintPublic(Amount,{value: 0})
         }
         else{
