@@ -90,12 +90,6 @@ async function connect() {
    }
 
     async function mintPublic() {
-       let values = ethers.utils.parseUnits("0.018").toString()
-    const Amount = document.getElementById("mintAmountPublic").value
-    if(Amount == 1){
-        values =  ethers.utils.parseUnits("0.009").toString()
-    } 
-        console.log(values)
         if(await window.ethereum.request({ method: 'eth_chainId'}) != targetChain){
             console.log(values)
             await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{ chainId: targetChain }] })}
@@ -105,7 +99,7 @@ async function connect() {
         const contract = new ethers.Contract(contractAddress, abi, signer)
         if(await contract.checkPublicMint() == true ){
             console.log(values)
-        const transactionResponse = await contract.mintPublic(Amount,{value: values})
+        const transactionResponse = await contract.mintPublic(Amount,{value: 0})
         }
         else{
              statusButton.innerHTML= "Public Mint is closed"}
