@@ -90,10 +90,10 @@ async function connect() {
    }
 
     async function mintPublic() {
-       let values = ethers.utils.parseUnits("0.030").toString()
+       let values = ethers.utils.parseUnits("0.018").toString()
     const Amount = document.getElementById("mintAmountPublic").value
     if(Amount == 1){
-        values =  ethers.utils.parseUnits("0.015").toString()
+        values =  ethers.utils.parseUnits("0.009").toString()
     } 
         console.log(values)
         if(await window.ethereum.request({ method: 'eth_chainId'}) != targetChain){
